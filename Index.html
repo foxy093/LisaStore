@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Lisa Store - Buy with PayPal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff6b6b;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://i.ibb.co/rHS09XW/cpp.png') no-repeat center/cover;
+        }
+
+        .hero-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero button {
+            background: #ff6b6b;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero button:hover {
+            background: #e55a5a;
+        }
+
+        .products {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            padding: 1rem;
+        }
+
+        .product-card p {
+            padding: 0 1rem;
+            font-size: 1rem;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .product-card .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            padding: 0 1rem;
+            margin: 1rem 0;
+        }
+
+        .product-card .paypal-button {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .product-card .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            background: #ff6b6b;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .product-card .btn:hover {
+            background: #e55a5a;
+            transform: scale(1.05);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            color: #ddd;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section a {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            text-align: center;
+            color: #fff;
+        }
+
+        footer a {
+            color: #ff6b6b;
+            text-decoration: underline;
+            margin: 0 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .products h2, section h2 {
+                font-size: 2rem;
+            }
+
+            .product-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Lisa Pack Store</h1>
+            <ul>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>WELCOME TO LISA STORE!</h2>
+            <p>Discover our amazing products and buy safet with PayPal.</p>
+            <button onclick="showSection('products')">See Products</button>
+        </div>
+    </section>
+
+    <section class="products" id="products" class="active">
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://i.ibb.co/9mvb25Z6/Pro-Print.png" alt="Basic Pack">
+                <h3>Basic Pack</h3>
+                <p>Get access to 1.3TB of high-quality content, with photos and videos.</p>
+                <div class="price">$4</div>
+                <div class="paypal-button">
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="EXJY54QGZJMR2" />
+                        <input type="hidden" name="amount" value="4" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" class="btn">Get Now</button>
+                    </form>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ibb.co/RkfD2bDs/Elite-print.png" alt="Standard Pack">
+                <h3>Standard Pack</h3>
+                <p>Enjoy 2TB of exclusive content.</p>
+                <div class="price">$6</div>
+                <div class="paypal-button">
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="EXJY54QGZJMR2" />
+                        <input type="hidden" name="amount" value="6" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" class="btn">Get Now</button>
+                    </form>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ibb.co/5hk5R9Qv/meg4print.png" alt="Premium Pack">
+                <h3>Premium Pack</h3>
+                <p>Access about 4TB of exclusive content.</p>
+                <div class="price">$10</div>
+                <div class="paypal-button">
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="EXJY54QGZJMR2" />
+                        <input type="hidden" name="amount" value="10" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" class="btn">Get Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="terms">
+        <h2>Termos de Serviço</h2>
+        <p>By purchasing our packages, you agree to use the content for personal use only. Redistribution or commercial use is strictly prohibited.</p>
+    </section>
+
+    <section id="privacy">
+        <h2>Política de Privacidade</h2>
+        <p>Your privacy is important to us. We do not share or sell your personal information. All data collected is strictly used to fulfill your purchase and provide customer service.</p>
+    </section>
+
+    <section id="refund">
+        <h2>Política de Reembolso</h2>
+        <p>Due to the nature of digital goods, we do not offer refunds once the content has been accessed or downloaded. If you encounter any problems, please contact our Telegram at <a href="https://t.me/+CdlHkCfcu5M4OWRh">https://t.me/+CdlHkCfcu5M4OWRh</a>.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contato</h2>
+        <p>Entre em contato: contato@minhaloja.com</p>
+    </section>
+
+    
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            });
+            document.getElementById(id).style.display = 'block';
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mostrar a seção de produtos por padrão
+        document.getElementById('products').style.display = 'block';
+        document.getElementById('products').classList.add('active');
+    </script>
+</body>
+</html>
+    
