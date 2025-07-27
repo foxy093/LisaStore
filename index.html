@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Virtual Lisa Store - Buy with Lemon Squeezy</title>
     <style>
+        /* Seu CSS original aqui, sem alterações */
         * {
             margin: 0;
             padding: 0;
@@ -254,7 +255,7 @@
         <nav>
             <h1>Lisa Pack Store</h1>
             <ul>
-                <!-- Links aqui -->
+                <!-- Links, se quiser adicionar -->
             </ul>
         </nav>
     </header>
@@ -270,7 +271,7 @@
     <section class="products" id="products" class="active">
         <div class="product-grid">
             <div class="product-card">
-                <img src="https://i.ibb.co/9mvb25Z6/Pro-Print.png" alt="Basic Pack">
+                <img src="https://i.ibb.co/9mvb25Z6/Pro-Print.png" alt="Basic Pack" />
                 <h3>Basic Pack</h3>
                 <p>Get access to 1.3TB of high-quality content, with photos and videos.</p>
                 <div class="price">$4</div>
@@ -280,7 +281,7 @@
             </div>
 
             <div class="product-card">
-                <img src="https://i.ibb.co/RkfD2bDs/Elite-print.png" alt="Standard Pack">
+                <img src="https://i.ibb.co/RkfD2bDs/Elite-print.png" alt="Standard Pack" />
                 <h3>Standard Pack</h3>
                 <p>Enjoy 2TB of exclusive content.</p>
                 <div class="price">$6</div>
@@ -290,7 +291,7 @@
             </div>
 
             <div class="product-card">
-                <img src="https://i.ibb.co/5hk5R9Qv/meg4print.png" alt="Premium Pack">
+                <img src="https://i.ibb.co/5hk5R9Qv/meg4print.png" alt="Premium Pack" />
                 <h3>Premium Pack</h3>
                 <p>Access about 4TB of exclusive content.</p>
                 <div class="price">$10</div>
@@ -321,42 +322,41 @@
         <p>Entre em contato: contato@minhaloja.com</p>
     </section>
 
-    <!-- Scripts no fim para melhor performance -->
     <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
     <script>
-        window.addEventListener('load', () => {
+        window.addEventListener("load", () => {
             if (!window.LemonSqueezy) {
                 console.error("Lemon Squeezy não carregou!");
                 alert("Erro ao carregar sistema de pagamento. Tente atualizar a página.");
                 return;
             }
 
-            window.openCheckout = function (variantId) {
-                window.LemonSqueezy.Setup({
-                    eventCallback: (event) => {
-                        if (event.event === "Checkout.Success") {
-                            console.log("Compra realizada com sucesso!");
-                        }
+            window.LemonSqueezy.Setup({
+                eventCallback: (event) => {
+                    if (event.event === "Checkout.Success") {
+                        console.log("Compra realizada com sucesso!");
                     }
-                });
+                },
+            });
 
+            window.openCheckout = function (variantId) {
                 window.LemonSqueezy.Checkout.open({ variant: variantId });
-            }
+            };
         });
 
         function showSection(id) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('active');
+            document.querySelectorAll("section").forEach((section) => {
+                section.style.display = "none";
+                section.classList.remove("active");
             });
-            document.getElementById(id).style.display = 'block';
-            document.getElementById(id).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById(id).style.display = "block";
+            document.getElementById(id).classList.add("active");
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         // Mostrar produtos por padrão
-        document.getElementById('products').style.display = 'block';
-        document.getElementById('products').classList.add('active');
+        document.getElementById("products").style.display = "block";
+        document.getElementById("products").classList.add("active");
     </script>
 </body>
 </html>
