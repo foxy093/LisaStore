@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Virtual Lisa Store - Buy with Lemon Squeezy</title>
   <style>
-    /* Todo seu CSS original aqui, igual ao que você passou */
     * {
       margin: 0;
       padding: 0;
@@ -313,7 +312,7 @@
 
   <section id="refund">
     <h2>Política de Reembolso</h2>
-    <p>Due to the nature of digital goods, we do not offer refunds once the content has been accessed or downloaded. If you encounter any problems, please contact our Telegram at <a href="https://t.me/+CdlHkCfcu5M4OWRh">https://t.me/+CdlHkCfcu5M4OWRh</a>.</p>
+    <p>Due to the nature of digital goods, we do not offer refunds once the content has been accessed or downloaded. If you encounter any problems, please contact our Telegram at <a href="https://t.me/+CdlHkCfcu5M4OWRh" target="_blank" rel="noopener noreferrer">https://t.me/+CdlHkCfcu5M4OWRh</a>.</p>
   </section>
 
   <section id="contact">
@@ -321,7 +320,47 @@
     <p>Entre em contato: contato@minhaloja.com</p>
   </section>
 
+  <!-- Lemon Squeezy SDK -->
   <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
-  <script src="script.js" defer></script>
+
+  <script>
+    window.addEventListener("load", () => {
+      if (!window.LemonSqueezy) {
+        alert("Erro ao carregar Lemon Squeezy, tente atualizar a página.");
+        return;
+      }
+
+      window.LemonSqueezy.Setup({
+        eventCallback: (event) => {
+          if (event.event === "Checkout.Success") {
+            console.log("Compra concluída com sucesso");
+          }
+        },
+      });
+
+      window.openCheckout = function (variantId) {
+        if (!variantId) {
+          console.error("VariantId inválido para checkout");
+          return;
+        }
+        window.LemonSqueezy.Checkout.open({ variant: variantId });
+      };
+    });
+
+    function showSection(id) {
+      document.querySelectorAll("section").forEach((section) => {
+        section.style.display = "none";
+        section.classList.remove("active");
+      });
+      document.getElementById(id).style.display = "block";
+      document.getElementById(id).classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Mostrar produtos por padrão
+    document.addEventListener("DOMContentLoaded", () => {
+      showSection("products");
+    });
+  </script>
 </body>
 </html>
