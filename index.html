@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Virtual Lisa Store - Buy with Lemon Squeezy</title>
     <style>
         * {
@@ -253,7 +253,9 @@
     <header>
         <nav>
             <h1>Lisa Pack Store</h1>
-            <ul></ul>
+            <ul>
+                <!-- Você pode adicionar links aqui -->
+            </ul>
         </nav>
     </header>
 
@@ -319,13 +321,11 @@
         <p>Entre em contato: contato@minhaloja.com</p>
     </section>
 
+    <!-- Script Lemon Squeezy -->
     <script src="https://app.lemonsqueezy.com/js/lemon.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Aguarda o Lemon carregar antes de usar
-        function openCheckout(variantId) {
+    <script>
+        window.openCheckout = function (variantId) {
             if (!window.LemonSqueezy || !window.LemonSqueezy.Checkout) {
-                console.error("Lemon Squeezy Checkout não carregado ainda.");
                 alert("O sistema de pagamento ainda está carregando. Tente novamente em alguns segundos.");
                 return;
             }
@@ -334,14 +334,27 @@
                 eventCallback: (event) => {
                     if (event.event === "Checkout.Success") {
                         console.log("Compra realizada com sucesso!");
+                        // aqui pode colocar redirecionamento ou mostrar mensagem
                     }
                 }
             });
 
             window.LemonSqueezy.Checkout.open({ variant: variantId });
+        };
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active');
+            });
+            document.getElementById(id).style.display = 'block';
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Torna a função global (acessível nos botões)
-        window.openCheckout = openCheckout;
-    });
-</script>
+        // Mostrar a seção de produtos por padrão
+        document.getElementById('products').style.display = 'block';
+        document.getElementById('products').classList.add('active');
+    </script>
+</body>
+</html>
