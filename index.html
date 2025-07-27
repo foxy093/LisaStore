@@ -321,45 +321,55 @@
   </section>
 
   <!-- Lemon Squeezy SDK -->
-  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  <script src="https://app.lemonsqueezy.com/js/lemon.js"></script>
 
   <script>
-    window.addEventListener("load", () => {
+    // Espera o SDK carregar e inicializa o checkout
+    window.addEventListener('load', () => {
       if (!window.LemonSqueezy) {
-        alert("Erro ao carregar Lemon Squeezy, tente atualizar a página.");
+        alert('Erro ao carregar Lemon Squeezy, tente atualizar a página.');
         return;
       }
 
       window.LemonSqueezy.Setup({
         eventCallback: (event) => {
-          if (event.event === "Checkout.Success") {
-            console.log("Compra concluída com sucesso");
+          if (event.event === 'Checkout.Success') {
+            console.log('Compra concluída com sucesso');
           }
-        },
-      });
-
-      window.openCheckout = function (variantId) {
-        if (!variantId) {
-          console.error("VariantId inválido para checkout");
-          return;
         }
-        window.LemonSqueezy.Checkout.open({ variant: variantId });
-      };
+      });
     });
 
-    function showSection(id) {
-      document.querySelectorAll("section").forEach((section) => {
-        section.style.display = "none";
-        section.classList.remove("active");
-      });
-      document.getElementById(id).style.display = "block";
-      document.getElementById(id).classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // Função para abrir o popup do checkout Lemon Squeezy
+    function openCheckout(variantId) {
+      if (!window.LemonSqueezy) {
+        alert('Lemon Squeezy não está carregado.');
+        return;
+      }
+      if (!variantId) {
+        alert('ID da variante inválido.');
+        return;
+      }
+      window.LemonSqueezy.Checkout.open({ variant: variantId });
     }
 
-    // Mostrar produtos por padrão
-    document.addEventListener("DOMContentLoaded", () => {
-      showSection("products");
+    // Função para trocar seção visível
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('active');
+      });
+      const target = document.getElementById(id);
+      if(target){
+        target.style.display = 'block';
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Mostrar produtos por padrão ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('products');
     });
   </script>
 </body>
