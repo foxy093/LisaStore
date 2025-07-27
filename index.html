@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Lisa Store - Buy with PayPal</title>
+    <title>Virtual Lisa Store - Buy with Lemon Squeezy</title>
     <style>
         * {
             margin: 0;
@@ -253,9 +253,7 @@
     <header>
         <nav>
             <h1>Lisa Pack Store</h1>
-            <ul>
-                
-            </ul>
+            <ul></ul>
         </nav>
     </header>
 
@@ -275,7 +273,7 @@
                 <p>Get access to 1.3TB of high-quality content, with photos and videos.</p>
                 <div class="price">$4</div>
                 <div class="paypal-button">
-                    <a href="https://yourstore.lemonsqueezy.com/checkout/buy/basic" class="btn" target="_blank">Get Now</a>
+                    <button class="btn" onclick="openCheckout('920642')">Get Now</button>
                 </div>
             </div>
 
@@ -285,7 +283,7 @@
                 <p>Enjoy 2TB of exclusive content.</p>
                 <div class="price">$6</div>
                 <div class="paypal-button">
-                    <a href="https://yourstore.lemonsqueezy.com/checkout/buy/standard" class="btn" target="_blank">Get Now</a>
+                    <button class="btn" onclick="openCheckout('920639')">Get Now</button>
                 </div>
             </div>
 
@@ -295,7 +293,7 @@
                 <p>Access about 4TB of exclusive content.</p>
                 <div class="price">$10</div>
                 <div class="paypal-button">
-                    <a href="https://yourstore.lemonsqueezy.com/checkout/buy/premium" class="btn" target="_blank">Get Now</a>
+                    <button class="btn" onclick="openCheckout('920640')">Get Now</button>
                 </div>
             </div>
         </div>
@@ -321,8 +319,22 @@
         <p>Entre em contato: contato@minhaloja.com</p>
     </section>
 
-    
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
     <script>
+        function openCheckout(variantId) {
+            window.LemonSqueezy.Setup({
+                eventCallback: (event) => {
+                    if (event.event === "Checkout.Success") {
+                        console.log("Compra realizada com sucesso!");
+                    }
+                }
+            });
+
+            window.LemonSqueezy.Checkout.open({
+                variant: variantId
+            });
+        }
+
         function showSection(id) {
             document.querySelectorAll('section').forEach(section => {
                 section.style.display = 'none';
@@ -339,4 +351,3 @@
     </script>
 </body>
 </html>
-    
