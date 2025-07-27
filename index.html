@@ -254,7 +254,7 @@
         <nav>
             <h1>Lisa Pack Store</h1>
             <ul>
-                <!-- Você pode adicionar links aqui -->
+                <!-- Links aqui -->
             </ul>
         </nav>
     </header>
@@ -321,26 +321,28 @@
         <p>Entre em contato: contato@minhaloja.com</p>
     </section>
 
-    <!-- Script Lemon Squeezy -->
-    <script src="https://app.lemonsqueezy.com/js/lemon.js"></script>
+    <!-- Scripts no fim para melhor performance -->
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
     <script>
-        window.openCheckout = function (variantId) {
-            if (!window.LemonSqueezy || !window.LemonSqueezy.Checkout) {
-                alert("O sistema de pagamento ainda está carregando. Tente novamente em alguns segundos.");
+        window.addEventListener('load', () => {
+            if (!window.LemonSqueezy) {
+                console.error("Lemon Squeezy não carregou!");
+                alert("Erro ao carregar sistema de pagamento. Tente atualizar a página.");
                 return;
             }
 
-            window.LemonSqueezy.Setup({
-                eventCallback: (event) => {
-                    if (event.event === "Checkout.Success") {
-                        console.log("Compra realizada com sucesso!");
-                        // aqui pode colocar redirecionamento ou mostrar mensagem
+            window.openCheckout = function (variantId) {
+                window.LemonSqueezy.Setup({
+                    eventCallback: (event) => {
+                        if (event.event === "Checkout.Success") {
+                            console.log("Compra realizada com sucesso!");
+                        }
                     }
-                }
-            });
+                });
 
-            window.LemonSqueezy.Checkout.open({ variant: variantId });
-        };
+                window.LemonSqueezy.Checkout.open({ variant: variantId });
+            }
+        });
 
         function showSection(id) {
             document.querySelectorAll('section').forEach(section => {
@@ -352,7 +354,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Mostrar a seção de produtos por padrão
+        // Mostrar produtos por padrão
         document.getElementById('products').style.display = 'block';
         document.getElementById('products').classList.add('active');
     </script>
