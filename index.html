@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Lisa Store - Buy with Lemon Squeezy</title>
+    <title>Virtual Lisa Store - Buy with PayPal</title>
     <style>
         * {
             margin: 0;
@@ -262,7 +262,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h2>WELCOME TO LISA STORE!</h2>
-            <p>Discover our amazing products and buy safely with Lemon Squeezy.</p>
+            <p>Discover our amazing products and buy safet with PayPal.</p>
             <button onclick="showSection('products')">See Products</button>
         </div>
     </section>
@@ -275,7 +275,13 @@
                 <p>Get access to 1.3TB of high-quality content, with photos and videos.</p>
                 <div class="price">$4</div>
                 <div class="paypal-button">
-                    <a href="https://lisastore.lemonsqueezy.com/checkout/buy/920642?embed=0" class="btn">Get Now</a>
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="ES6WPB6UCZ6K6" />
+                        <input type="hidden" name="amount" value="4" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" class="btn">Get Now</button>
+                    </form>
                 </div>
             </div>
             <div class="product-card">
@@ -284,7 +290,13 @@
                 <p>Enjoy 2TB of exclusive content.</p>
                 <div class="price">$6</div>
                 <div class="paypal-button">
-                    <a href="https://lisastore.lemonsqueezy.com/checkout/buy/920639?embed=0" class="btn">Get Now</a>
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="ES6WPB6UCZ6K6" />
+                        <input type="hidden" name="amount" value="6" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" class="btn">Get Now</button>
+                    </form>
                 </div>
             </div>
             <div class="product-card">
@@ -293,46 +305,14 @@
                 <p>Access about 4TB of exclusive content.</p>
                 <div class="price">$10</div>
                 <div class="paypal-button">
-                    <a href="https://lisastore.lemonsqueezy.com/checkout/buy/920640?embed=0" class="btn">Get Now</a>
+                    <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        <input type="hidden" name="business" value="ES6WPB6UCZ6K6" />
+                        <input type="hidden" name="amount" value="10" />
+                        <input type="hidden" name="no_recurring" value="0" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <button type="submit" class="btn">Get Now</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="terms">
-        <h2>Termos de Serviço</h2>
-        <p>By purchasing our packages, you agree to use the content for personal use only. Redistribution or commercial use is strictly prohibited.</p>
-    </section>
-
-    <section id="privacy">
-        <h2>Política de Privacidade</h2>
-        <p>Your privacy is important to us. We do not share or sell your personal information. All data collected is strictly used to fulfill your purchase and provide customer service.</p>
-    </section>
-
-    <section id="refund">
-        <h2>Política de Reembolso</h2>
-        <p>Due to the nature of digital goods, we do not offer refunds once the content has been accessed or downloaded. If you encounter any problems, please contact our Telegram at <a href="https://t.me/+CdlHkCfcu5M4OWRh">https://t.me/+CdlHkCfcu5M4OWRh</a>.</p>
-    </section>
-
-    <section id="contact">
-        <h2>Contato</h2>
-        <p>Entre em contato: contato@minhaloja.com</p>
-    </section>
-
-    <script>
-        function showSection(id) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('active');
-            });
-            document.getElementById(id).style.display = 'block';
-            document.getElementById(id).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Mostrar a seção de produtos por padrão
-        document.getElementById('products').style.display = 'block';
-        document.getElementById('products').classList.add('active');
-    </script>
-</body>
-</html>
